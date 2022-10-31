@@ -12,7 +12,7 @@ export const app = express()
 setupProxy(app)
 setupGlobalMiddlewares(app)
 setupRoutes(app, api())
-sequelizeLoader(sequelizeInstance, true)
+sequelizeLoader(sequelizeInstance, false)
   .then(_ => console.log('connection to database successfull'))
   .catch(err => console.error('connection to database failed: ', err))
 app.listen(constants.SERVER_PORT, () => {
