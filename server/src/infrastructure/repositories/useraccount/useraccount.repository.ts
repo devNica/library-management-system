@@ -2,7 +2,7 @@ import { FindAllUserAccountByParameters } from '@core/aplication/ports/repositor
 import { FindByPkUserAccountByParameters } from '@core/aplication/ports/repositories/useraccount/findbypk-useraccount.repository'
 import { FindUserAccountByParameters } from '@core/aplication/ports/repositories/useraccount/findone-useraccount.repository'
 import { InsertUserAccountRepository } from '@core/aplication/ports/repositories/useraccount/insert-useraccount.repository'
-import { FindByPkUserAccountDTO, FindOneUserAccountDTO, InsertUserAccountDTO, UserAccountFound } from '@core/domain/models/useraccount'
+import { FindByPkUserAccountDTO, FindOneUserAccountDTO, InsertUserAccountDTO, RegisteredAccount, UserAccountFound } from '@core/domain/models/useraccount'
 import { UserAccountModel } from '@infrastructure/sequelize/models'
 import { Op } from 'sequelize'
 
@@ -11,8 +11,9 @@ export class UserAccountRepository implements
     FindUserAccountByParameters,
     FindAllUserAccountByParameters,
     FindByPkUserAccountByParameters {
-  async insertUser (data: InsertUserAccountDTO): Promise<void> {
-    await UserAccountModel.create(data)
+  async insertUser (data: InsertUserAccountDTO): Promise<RegisteredAccount> {
+    const user = await UserAccountModel.create(data)
+    return { id: user.id, createdAt: user.createdAt }
   }
 
   async findUserAccount (data: FindOneUserAccountDTO): Promise<UserAccountFound | null> {

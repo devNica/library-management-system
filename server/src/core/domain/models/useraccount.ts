@@ -19,6 +19,11 @@ export interface InsertUserAccountDTO extends SignUpRequestModel {
   createdAt: number
 }
 
+export interface RegisteredAccount {
+  id: string
+  createdAt: number
+}
+
 export interface FindOneUserAccountDTO {
   userId?: string
   email?: string
@@ -40,5 +45,5 @@ export interface UserAccountFound {
 
 /** RESPONSE MODEL */
 export interface SignupResponseModel {
-  id: string
+  userId: string
 }

@@ -1,2 +1,2 @@
 #test
-GET http://localhost:5400/test
+GET http://localhost:9100/api/v1/test
