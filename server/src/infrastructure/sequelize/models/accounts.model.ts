@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional, NOW } from 'sequelize'
 import sequelizeInstance from '../connection'
 import { UserAccountEntity } from '../entities/UserAccount.entity'
 
-export interface UserAccountAttrInput extends Optional<UserAccountEntity, 'id' | 'isActive' | 'resetPassword' | 'expiresIn' | 'updatedAt'> {}
+export interface UserAccountAttrInput extends Optional<UserAccountEntity, 'id' | 'isActive' | 'resetPassword' | 'updatedAt'> {}
 export interface UserAccountAttrOutput extends Required<UserAccountEntity> {}
 
 export default class UserAccountModel extends Model<UserAccountEntity, UserAccountAttrInput> implements UserAccountEntity {
@@ -15,8 +15,8 @@ export default class UserAccountModel extends Model<UserAccountEntity, UserAccou
   public expiresIn!: number
   public isRoot!: boolean
   public isActive!: boolean
-  public createdAt!: string
-  public updatedAt!: string
+  public createdAt!: number
+  public updatedAt!: number
 }
 
 UserAccountModel.init({

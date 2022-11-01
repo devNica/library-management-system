@@ -15,9 +15,10 @@ export default class GroupModel extends Model<GroupEntity, GroupAttrInput> imple
 
 GroupModel.init({
   id: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    allowNull: false,
+    autoIncrement: true
   },
   groupName: {
     type: DataTypes.STRING(100),
@@ -29,11 +30,11 @@ GroupModel.init({
     defaultValue: true
   },
   createdAt: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: false
   },
   updatedAt: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: true
   }
 }, {

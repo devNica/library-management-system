@@ -8,6 +8,6 @@ export interface UserAccountEntity {
   expiresIn: number
   isRoot: boolean
   isActive: boolean
-  createdAt: string
-  updatedAt: string
+  createdAt: number
+  updatedAt: number
 }
