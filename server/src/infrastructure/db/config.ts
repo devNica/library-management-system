@@ -1,4 +1,4 @@
-import constants from '../../common/constants'
+import constants from '@common/config/constants'
 import { Dialect } from 'sequelize/types'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
