@@ -8,7 +8,7 @@ export interface UserGroupAttrOutput extends Required<UserGroupEntity> {}
 export default class UserGroupModel extends Model<UserGroupAttrInput, UserGroupAttrOutput> implements UserGroupEntity {
   public fkGroup!: number
   public fkUser!: number
-  public createdAt!: string
+  public createdAt!: number
 }
 
 UserGroupModel.init({
@@ -35,7 +35,7 @@ UserGroupModel.init({
     onUpdate: 'CASCADE'
   },
   createdAt: {
-    type: DataTypes.DATE,
+    type: DataTypes.BIGINT,
     defaultValue: DataTypes.NOW(),
     allowNull: false
   }

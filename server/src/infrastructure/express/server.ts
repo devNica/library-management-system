@@ -17,7 +17,7 @@ export const app = express()
 setupProxy(app)
 setupGlobalMiddlewares(app)
 setupRoutes(app, api())
-sequelizeLoader(sequelizeInstance, false)
+sequelizeLoader(sequelizeInstance, true)
   .then(_ => console.log('connection to database successfull'))
   .catch(err => console.error('connection to database failed: ', err))
 

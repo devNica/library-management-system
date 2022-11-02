@@ -1,5 +1,5 @@
 import { SignUpRequestModel, SignupResponseModel } from '../models/useraccount'
 
 export interface SignUpUseCase {
-  execute: (signUpModel: SignUpRequestModel) => Promise<SignupResponseModel> | never
+  execute: (data: SignUpRequestModel) => Promise<SignupResponseModel> | never
 }

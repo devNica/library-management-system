@@ -1,0 +1,25 @@
+import { Controller } from '@core/aplication/ports/controller/controller'
+import { ResponseHandler, ResponseModel } from '@core/aplication/ports/http/http-response'
+import { SignUpUseCase } from '@core/domain/usecase/signup.usecase'
+import { SignupResponseModel, SignUpRequestModel } from '@core/domain/models/useraccount'
+import { RequestModel } from '@core/aplication/ports/http/http-request'
+import { GenericErrorHandler } from '@core/aplication/ports/errors/error.handler'
+
+export class UserAccountRegControlerInterface implements Controller<SignupResponseModel | never> {
+  constructor (
+    private readonly userAccountRegUC: SignUpUseCase,
+    private readonly presenter: ResponseHandler<SignupResponseModel>
+  ) {}
+
+  async handleRequest (request: RequestModel<SignUpRequestModel>): Promise<ResponseModel<SignupResponseModel>> | never {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (!request || !request?.body) {
+      throw new GenericErrorHandler('Invalid Request', 'badRequest')
+    }
+
+    const { email, password, fullname, phoneNumber } = request.body
+    const newUser = await this.userAccountRegUC.execute({ email, password, fullname, phoneNumber })
+    const response = await this.presenter.response(newUser, 'createdRequest', 'User account has been created successfully')
+    return response
+  }
+}

@@ -67,7 +67,7 @@ UserAccountModel.init({
     defaultValue: NOW()
   },
   updatedAt: {
-    type: DataTypes.DATE,
+    type: DataTypes.BIGINT,
     allowNull: true
   }
 }, {
