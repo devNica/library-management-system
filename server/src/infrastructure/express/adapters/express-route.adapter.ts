@@ -14,10 +14,14 @@ export const expressRouterAdapter = <T>(controller: Controller<T>) => {
         headers: request.headers
       })
         .then(ctrResponse => {
-          const { type, message, body } = ctrResponse
-          next(ApiResponse[`${type}`](message, body))
+          console.log('CTR: ', ctrResponse)
+          const type: HttpResponse = ctrResponse.type
+          const message: string = ctrResponse.message
+          const meta: any = ctrResponse.body
+          next(ApiResponse[`${type}`](message, meta))
         })
         .catch((err) => {
+          console.log('ERR: ', err)
           const r = err.message.split(',')
           const type: HttpResponse = r[0]
           next(ApiResponse[`${type}`](r[1], {}))

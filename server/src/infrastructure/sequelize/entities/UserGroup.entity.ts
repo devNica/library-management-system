@@ -1,5 +1,5 @@
 export interface UserGroupEntity {
   fkGroup: number
-  fkUser: number
+  fkUser: string
   createdAt: number
 }

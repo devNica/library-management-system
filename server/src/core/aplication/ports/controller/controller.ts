@@ -2,5 +2,5 @@ import { RequestModel } from '../http/http-request'
 import { ResponseModel } from '../http/http-response'
 
 export interface Controller<T = unknown> {
-  handleRequest: (requestModel: RequestModel) => Promise<ResponseModel<T>>
+  handleRequest: (data: RequestModel) => Promise<ResponseModel<T>>
 }

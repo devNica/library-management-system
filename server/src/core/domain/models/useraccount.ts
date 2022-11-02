@@ -1,4 +1,4 @@
-/** REQUEST MODEL */
+/** HTTP REQUEST MODEL */
 
 export interface SignUpRequestModel {
   email: string
@@ -7,20 +7,16 @@ export interface SignUpRequestModel {
   phoneNumber: string
 }
 
-export interface SigninRequest {
+export interface SigninRequestModel {
   email: string
   password: string
 }
 
-/** DTO MODELS */
-export interface InsertUserAccountDTO extends SignUpRequestModel {
+/** DTO's MODELS */
+export interface UserDTO extends SignUpRequestModel {
   isRoot: boolean
+  fkGroup: number
   expiresIn: number
-  createdAt: number
-}
-
-export interface RegisteredAccount {
-  id: string
   createdAt: number
 }
 
@@ -32,7 +28,13 @@ export interface FindOneUserAccountDTO {
 
 export interface FindByPkUserAccountDTO extends Omit<FindOneUserAccountDTO, 'email' | 'fullname'> {}
 
-export interface UserAccountFound {
+/** REPOSITORY RESPONSE MODEL */
+export interface RegisteredUserModel {
+  id: string
+  createdAt: number
+}
+
+export interface FoundUserAccountModel {
   id: string
   email: string
   password: string
@@ -43,7 +45,8 @@ export interface UserAccountFound {
   expiresIn: number
 }
 
-/** RESPONSE MODEL */
+/** HTTP RESPONSE MODEL */
 export interface SignupResponseModel {
   userId: string
+  createdAt: Date
 }

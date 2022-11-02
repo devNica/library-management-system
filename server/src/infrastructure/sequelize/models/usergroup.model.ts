@@ -7,7 +7,7 @@ export interface UserGroupAttrOutput extends Required<UserGroupEntity> {}
 
 export default class UserGroupModel extends Model<UserGroupAttrInput, UserGroupAttrOutput> implements UserGroupEntity {
   public fkGroup!: number
-  public fkUser!: number
+  public fkUser!: string
   public createdAt!: number
 }
 
@@ -25,7 +25,7 @@ UserGroupModel.init({
   },
   fkUser: {
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'user_account',
@@ -36,7 +36,7 @@ UserGroupModel.init({
   },
   createdAt: {
     type: DataTypes.BIGINT,
-    defaultValue: DataTypes.NOW(),
+    defaultValue: Date.now(),
     allowNull: false
   }
 }, {

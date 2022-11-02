@@ -1,5 +1,5 @@
 import { Application } from 'express'
-import { ApiResponse } from '../adapters/api-reponse.adapter'
+import { ApiResponse, httpResponseHandler } from '../adapters/api-reponse.adapter'
 import { APYType } from '../api'
 
 export const setupRoutes = (app: Application, routes: APYType[]): void => {
@@ -11,4 +11,6 @@ export const setupRoutes = (app: Application, routes: APYType[]): void => {
     const error = new Error('Internal Server Error')
     next(ApiResponse.internalServerErrorRequets(error.message, {}))
   })
+
+  app.use(httpResponseHandler)
 }

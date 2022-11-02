@@ -7,6 +7,6 @@ export const setupGlobalMiddlewares = (app: Application): void => {
   app.use(helmet())
   app.use(cors({ origin: '* ' }))
   app.use(json())
-  app.use(urlencoded({ extended: false }))
+  app.use(urlencoded({ extended: true }))
   app.use(morgan('dev'))
 }

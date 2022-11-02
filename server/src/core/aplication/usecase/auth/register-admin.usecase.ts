@@ -1,15 +1,15 @@
 import { FindUserAccountByParameters } from '@core/aplication/ports/repositories/useraccount/findone-useraccount.repository'
-import { InsertUserAccountRepository } from '@core/aplication/ports/repositories/useraccount/insert-useraccount.repository'
+import { InserAdminAccountRepository } from '@core/aplication/ports/repositories/useraccount/insert-admin-account.repository'
 import { SignUpRequestModel, SignupResponseModel } from '@core/domain/models/useraccount'
 import { SignUpUseCase } from '@core/domain/usecase/signup.usecase'
 import { ArgonSecurityAdapter } from '@common/adapter/security/argon.adapter'
 import { addMinutesToCurrentDate } from '@common/helper/date.helper'
 
-export class Signup implements SignUpUseCase {
+export class RegisterAdministrator implements SignUpUseCase {
   constructor (
-    private readonly argonSecurity: ArgonSecurityAdapter,
-    private readonly insertUser: InsertUserAccountRepository,
-    private readonly findOneUser: FindUserAccountByParameters
+    private readonly security: ArgonSecurityAdapter,
+    private readonly set: InserAdminAccountRepository,
+    private readonly get: FindUserAccountByParameters
   ) {}
 
   async execute (request: SignUpRequestModel): Promise<SignupResponseModel> | never {
@@ -18,20 +18,21 @@ export class Signup implements SignUpUseCase {
       fullname: request.fullname
     }
 
-    const already = await this.findOneUser.findUserAccount(data)
+    const already = await this.get.findUserAccount(data)
     if (already !== null) throw new Error('Email already register')
 
     const dto = {
       email: request.email,
-      password: await this.argonSecurity.hash(request.password),
+      password: await this.security.hash(request.password),
       fullname: request.fullname,
       phoneNumber: request.phoneNumber,
       expiresIn: addMinutesToCurrentDate(new Date(), 20).getTime(),
       isRoot: false,
+      fkGroup: 2,
       createdAt: Date.now()
     }
 
-    const newUser = await this.insertUser.insertUser(dto)
-    return { userId: newUser.id }
+    const newUser = await this.set.insertAdminUser(dto)
+    return { userId: newUser.id, createdAt: new Date(newUser.createdAt) }
   }
 }

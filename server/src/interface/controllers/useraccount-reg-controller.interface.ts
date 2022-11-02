@@ -5,20 +5,20 @@ import { SignupResponseModel, SignUpRequestModel } from '@core/domain/models/use
 import { RequestModel } from '@core/aplication/ports/http/http-request'
 import { GenericErrorHandler } from '@core/aplication/ports/errors/error.handler'
 
-export class UserAccountRegControlerInterface implements Controller<SignupResponseModel | never> {
+export class UserAdminRegControlerInterface implements Controller<SignupResponseModel | never> {
   constructor (
-    private readonly userAccountRegUC: SignUpUseCase,
+    private readonly userAdminUC: SignUpUseCase,
     private readonly presenter: ResponseHandler<SignupResponseModel>
   ) {}
 
-  async handleRequest (request: RequestModel<SignUpRequestModel>): Promise<ResponseModel<SignupResponseModel>> | never {
+  async handleRequest (request: RequestModel<SignUpRequestModel>): Promise<ResponseModel<SignupResponseModel>> {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!request || !request?.body) {
       throw new GenericErrorHandler('Invalid Request', 'badRequest')
     }
 
     const { email, password, fullname, phoneNumber } = request.body
-    const newUser = await this.userAccountRegUC.execute({ email, password, fullname, phoneNumber })
+    const newUser = await this.userAdminUC.execute({ email, password, fullname, phoneNumber })
     const response = await this.presenter.response(newUser, 'createdRequest', 'User account has been created successfully')
     return response
   }

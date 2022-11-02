@@ -30,7 +30,7 @@
   },
   "_moduleAliases": {
     "@common": "src/common",
-    "@src/core": "src/core",
+    "@core": "src/core",
     "@interface": "src/interface",
     "@infrastructure": "src/infrastructure",
     "@factories": "src/factories"
