@@ -48,7 +48,7 @@ UserAccountModel.init({
     defaultValue: false
   },
   expiresIn: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: false
   },
   isRoot: {

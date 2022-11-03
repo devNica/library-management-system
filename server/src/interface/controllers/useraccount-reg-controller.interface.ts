@@ -17,9 +17,13 @@ export class UserAdminRegControlerInterface implements Controller<SignupResponse
       throw new GenericErrorHandler('Invalid Request', 'badRequest')
     }
 
-    const { email, password, fullname, phoneNumber } = request.body
-    const newUser = await this.userAdminUC.execute({ email, password, fullname, phoneNumber })
-    const response = await this.presenter.response(newUser, 'createdRequest', 'User account has been created successfully')
-    return response
+    try {
+      const { email, password, fullname, phoneNumber } = request.body
+      const newUser = await this.userAdminUC.execute({ email, password, fullname, phoneNumber })
+      const response = await this.presenter.response(newUser, 'createdRequest', 'User account has been created successfully')
+      return response
+    } catch (error: any) {
+      throw new GenericErrorHandler(error.message, 'badRequest')
+    }
   }
 }
