@@ -15,7 +15,7 @@ export interface SigninRequestModel {
 /** DTO's MODELS */
 export interface UserDTO extends SignUpRequestModel {
   isRoot: boolean
-  fkGroup: number
+  fkProfile: number
   expiresIn: number
   createdAt: number
 }
@@ -40,7 +40,10 @@ export interface FoundUserAccountModel {
   password: string
   fullname: string
   phoneNumber: string
+  profileName?: string
+  resetPassword: boolean
   createdAt: number
+  isActive: boolean
   isRoot: boolean
   expiresIn: number
 }
@@ -49,4 +52,17 @@ export interface FoundUserAccountModel {
 export interface SignupResponseModel {
   userId: string
   createdAt: Date
+}
+
+export interface SigninResponseModel {
+  user: {
+    userId: string
+    email: string
+    fullname: string
+    resetPassword: boolean
+    phoneNumber: string
+    isActive: boolean
+    profile: string
+  }
+  token: string
 }

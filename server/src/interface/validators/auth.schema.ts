@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-export const adminUserRegSchema: Joi.ObjectSchema = Joi.object({
+export const signupAdminSchema: Joi.ObjectSchema = Joi.object({
   email: Joi.string().email().required().messages({
     'any.required': 'The email field is required',
     'string.base': 'the format of the email field is incorrect',
@@ -17,5 +17,17 @@ export const adminUserRegSchema: Joi.ObjectSchema = Joi.object({
   phoneNumber: Joi.string().required().messages({
     'any.required': 'The phone number field is required',
     'string.base': 'the format of the phone number field is incorrect'
+  })
+})
+
+export const signinAdminSchema: Joi.ObjectSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    'any.required': 'The email field is required',
+    'string.base': 'the format of the email field is incorrect',
+    'string.email': 'the format of the email field is incorrect'
+  }),
+  password: Joi.string().required().messages({
+    'any.required': 'The password field is required',
+    'string.base': 'the format of the password field is incorrect'
   })
 })

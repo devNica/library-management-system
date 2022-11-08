@@ -1,23 +1,23 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import sequelizeInstance from '../connection'
-import { UserGroupEntity } from '../entities/UserGroup.entity'
+import { UserProfileEntity } from '../entities/UserProfile.entity'
 
-export interface UserGroupAttrInput extends Optional<UserGroupEntity, 'createdAt'> {}
-export interface UserGroupAttrOutput extends Required<UserGroupEntity> {}
+export interface UserProfileAttrInput extends Optional<UserProfileEntity, 'createdAt'> {}
+export interface UserProfileAttrOutput extends Required<UserProfileEntity> {}
 
-export default class UserGroupModel extends Model<UserGroupAttrInput, UserGroupAttrOutput> implements UserGroupEntity {
-  public fkGroup!: number
+export default class UserProfileModel extends Model<UserProfileAttrInput, UserProfileAttrOutput> implements UserProfileEntity {
+  public fkProfile!: number
   public fkUser!: string
   public createdAt!: number
 }
 
-UserGroupModel.init({
-  fkGroup: {
+UserProfileModel.init({
+  fkProfile: {
     primaryKey: true,
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'group',
+      model: 'profile',
       key: 'id'
     },
     onDelete: 'RESTRICT',
@@ -41,6 +41,6 @@ UserGroupModel.init({
   }
 }, {
   sequelize: sequelizeInstance,
-  modelName: 'user_groups',
+  modelName: 'user_profile',
   underscored: true
 })

@@ -1,6 +1,6 @@
-export interface GroupEntity {
+export interface ProfileEntity {
   id: number
-  groupName: string
+  profileName: string
   isActive: boolean
   createdAt: number
   updatedAt: number

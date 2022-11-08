@@ -1,11 +1,11 @@
 import { FindUserAccountByParameters } from '@core/aplication/ports/repositories/useraccount/findone-useraccount.repository'
 import { InserAdminAccountRepository } from '@core/aplication/ports/repositories/useraccount/insert-admin-account.repository'
 import { SignUpRequestModel, SignupResponseModel } from '@core/domain/models/useraccount'
-import { SignUpUseCase } from '@core/domain/usecase/signup.usecase'
+import { SignUpUseCase } from '@core/domain/usecase/useraccount.usecase'
 import { ArgonSecurityAdapter } from '@common/adapter/security/argon.adapter'
 import { addMinutesToCurrentDate } from '@common/helper/date.helper'
 
-export class RegisterAdministrator implements SignUpUseCase {
+export class SignupAdmin implements SignUpUseCase {
   constructor (
     private readonly security: ArgonSecurityAdapter,
     private readonly set: InserAdminAccountRepository,
@@ -29,7 +29,7 @@ export class RegisterAdministrator implements SignUpUseCase {
         phoneNumber: request.phoneNumber,
         expiresIn: addMinutesToCurrentDate(new Date(), 20).getTime(),
         isRoot: false,
-        fkGroup: 2,
+        fkProfile: 2,
         createdAt: Date.now()
       }
 

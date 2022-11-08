@@ -1,9 +1,9 @@
-import GroupModel from './group.model'
+import ProfileModel from './profile.model'
 import UserAccountModel from './accounts.model'
-import UserGroupModel from './usergroup.model'
+import UserProfileModel from './userprofile.model'
 
 export {
-  GroupModel,
+  ProfileModel,
   UserAccountModel,
-  UserGroupModel
+  UserProfileModel
 }
