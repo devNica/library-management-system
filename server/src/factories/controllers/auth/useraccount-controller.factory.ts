@@ -1,4 +1,5 @@
 import { ArgonSecurityAdapter } from '@common/adapter/security/argon.adapter'
+import { jwtTokenSecurity } from '@common/adapter/security/jwt.adapter'
 import { SigninAdmin } from '@core/aplication/usecase/auth/signin-admin.usecase'
 import { SignupAdmin } from '@core/aplication/usecase/auth/signup-admin.usecase'
 import { SigninResponseModel, SignupResponseModel } from '@core/domain/models/useraccount'
@@ -16,7 +17,9 @@ export const UserAccountControllerFactory = () => {
   )
 
   const signinAdminUC = new SigninAdmin(
-    findUserAccount
+    findUserAccount,
+    new ArgonSecurityAdapter(),
+    jwtTokenSecurity
   )
 
   const signupAdminPresenter = new GenericResponseInterface<SignupResponseModel>()

@@ -9,6 +9,9 @@ declare global {
       DB_HOST: string
       DB_DIALECT: 'mysql' | 'postgres'
       NODE_ENV: 'development' | 'test' | 'production'
+      JWTROOT: string
+      JWTADMIN: string
+      JWTREFRESH: string
     }
   }
 }

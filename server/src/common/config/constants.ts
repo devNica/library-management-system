@@ -11,5 +11,13 @@ export default {
     DBPASS: process.env.DB_PASSWORD,
     DBHOST: process.env.DB_HOST,
     DIALECT: process.env.DB_DIALECT
-  }
+  },
+  SECRET_TOKEN: {
+    root: process.env.JWTROOT,
+    admin: process.env.JWTADMIN,
+    refresh: process.env.JWTREFRESH
+  },
+  SECRET_TOKEN_EXP: '10m',
+  REFRESH_TOKEN_EXP: '5m'
+
 }
