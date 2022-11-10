@@ -34,13 +34,15 @@ export interface RegisteredUserModel {
   createdAt: number
 }
 
+type profileTypes = 'root' | 'admin' | 'user' | 'refresh'
+
 export interface FoundUserAccountModel {
   id: string
   email: string
   password: string
   fullname: string
   phoneNumber: string
-  profileName?: string
+  profileName?: profileTypes
   resetPassword: boolean
   createdAt: number
   isActive: boolean

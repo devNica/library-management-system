@@ -4,6 +4,11 @@ export default {
   ENVIROMENT: process.env.NODE_ENV,
   SERVER_PORT: process.env.SERVER_PORT,
   PREFIX: '/api/v1',
+  REDIS: {
+    HOST: process.env.REDIS_HOST,
+    PORT: process.env.REDIS_PORT,
+    PASSWORD: process.env.REDIS_PASSWORD
+  },
   DB: {
     DBNAME: process.env.DB_NAME,
     DBPORT: process.env.DB_PORT,
@@ -15,7 +20,8 @@ export default {
   SECRET_TOKEN: {
     root: process.env.JWTROOT,
     admin: process.env.JWTADMIN,
-    refresh: process.env.JWTREFRESH
+    refresh: process.env.JWTREFRESH,
+    user: process.env.JWTUSER
   },
   SECRET_TOKEN_EXP: '10m',
   REFRESH_TOKEN_EXP: '5m'

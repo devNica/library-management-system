@@ -11,7 +11,11 @@ declare global {
       NODE_ENV: 'development' | 'test' | 'production'
       JWTROOT: string
       JWTADMIN: string
+      JWTUSER: string
       JWTREFRESH: string
+      REDIS_HOST: string
+      REDIS_PORT: number
+      REDIS_PASSWORD: string
     }
   }
 }
