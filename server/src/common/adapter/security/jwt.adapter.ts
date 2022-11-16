@@ -13,14 +13,17 @@ interface keyTypes {
 export class JWTTokenSecurity implements JWTToken {
   constructor (
     private readonly secretKeys: keyTypes,
-    private readonly secretTokenExpiration: string
-    // private readonly refreshTokenExpiration: number
+    private readonly secretTokenExpiration: string,
+    private readonly refreshTokenExpiration: string
   ) {}
 
-  signedAccessToken (payload: payloadToken): SignedToken {
+  signedAccessToken (payload: payloadToken, isMain: boolean = true): SignedToken {
     const secret = this.secretKeys[`${payload.profile}`]
+    const expiration = isMain
+      ? this.secretTokenExpiration
+      : this.refreshTokenExpiration
     const token = jwt.sign(payload, secret, {
-      expiresIn: this.secretTokenExpiration
+      expiresIn: expiration
     })
 
     return { token }
@@ -34,11 +37,11 @@ export class JWTTokenSecurity implements JWTToken {
 }
 
 const secret = constants.SECRET_TOKEN
-// const refresh = constants.SECRET_TOKEN.refresh
 const secretTokenExp = constants.SECRET_TOKEN_EXP
-// const refreshTokenExp = constants.REFRESH_TOKEN_EXP
+const refreshTokenExp = constants.REFRESH_TOKEN_EXP
 
 export const jwtTokenSecurity = new JWTTokenSecurity(
   secret,
-  secretTokenExp
+  secretTokenExp,
+  refreshTokenExp
 )

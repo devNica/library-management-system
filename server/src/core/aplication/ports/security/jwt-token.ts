@@ -9,6 +9,6 @@ export interface payloadToken {
 }
 
 export interface JWTToken {
-  signedAccessToken: (payload: payloadToken) => SignedToken
+  signedAccessToken: (payload: payloadToken, isMain?: boolean) => SignedToken
   verifyAdminToken: (token: string) => string
 }

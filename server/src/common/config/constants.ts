@@ -9,6 +9,9 @@ export default {
     PORT: process.env.REDIS_PORT,
     PASSWORD: process.env.REDIS_PASSWORD
   },
+  CACHE: {
+    REFRESH_TOKEN: 'refreshToken'
+  },
   DB: {
     DBNAME: process.env.DB_NAME,
     DBPORT: process.env.DB_PORT,
@@ -23,7 +26,7 @@ export default {
     refresh: process.env.JWTREFRESH,
     user: process.env.JWTUSER
   },
-  SECRET_TOKEN_EXP: '10m',
-  REFRESH_TOKEN_EXP: '5m'
+  SECRET_TOKEN_EXP: '5m',
+  REFRESH_TOKEN_EXP: '15m'
 
 }

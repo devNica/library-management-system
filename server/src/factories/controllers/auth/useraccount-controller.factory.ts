@@ -1,4 +1,4 @@
-// import { RedisAdapter } from '@common/adapter/cache/redis.adapter'
+import { RedisAdapter } from '@common/adapter/cache/redis.adapter'
 import { ArgonSecurityAdapter } from '@common/adapter/security/argon.adapter'
 import { jwtTokenSecurity } from '@common/adapter/security/jwt.adapter'
 import { SigninAdmin } from '@core/aplication/usecase/auth/signin-admin.usecase'
@@ -20,8 +20,8 @@ export const UserAccountControllerFactory = () => {
   const signinAdminUC = new SigninAdmin(
     findUserAccount,
     new ArgonSecurityAdapter(),
-    jwtTokenSecurity
-    // new RedisAdapter()
+    jwtTokenSecurity,
+    new RedisAdapter()
   )
 
   const signupAdminPresenter = new GenericResponseInterface<SignupResponseModel>()
