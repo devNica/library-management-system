@@ -29,10 +29,10 @@ export class JWTTokenSecurity implements JWTToken {
     return { token }
   }
 
-  verifyAdminToken (token: string): string {
+  verifyAdminToken (token: string): any {
     const secret = this.secretKeys.admin
-    const userData = jwt.verify(token, secret) as { id: string }
-    return userData.id
+    const userData = jwt.verify(token, secret)
+    return userData
   }
 }
 
@@ -40,7 +40,7 @@ const secret = constants.SECRET_TOKEN
 const secretTokenExp = constants.SECRET_TOKEN_EXP
 const refreshTokenExp = constants.REFRESH_TOKEN_EXP
 
-export const jwtTokenSecurity = new JWTTokenSecurity(
+export const jwtTokenAdapter = new JWTTokenSecurity(
   secret,
   secretTokenExp,
   refreshTokenExp

@@ -68,3 +68,12 @@ export interface SigninResponseModel {
   }
   token: string
 }
+
+export interface GetListUserAccountsResponseModel {
+  userId: string
+  fullname: string
+  email: string
+  profile: string
+  createdAt: Date
+  isActive: boolean
+}

@@ -60,9 +60,15 @@ export class UserAccountRepository implements
   }
 
   async findAllUserAccount (data: FindOneUserAccountDTO): Promise<FoundUserAccountModel[]> {
+    console.log('DATA: ', data)
     const user = await UserAccountModel.findAll({
       where: {
-        [Op.or]: [{ id: data.userId }, { email: data.email }, { fullname: data.fullname }]
+        [Op.or]:
+          [
+            { id: { [Op.like]: `%${data.userId ?? ''}%` } },
+            { email: { [Op.like]: `%${data.email ?? ''}%` } },
+            { fullname: { [Op.like]: `%${data.fullname ?? ''}%` } }
+          ]
       }
     })
     return user

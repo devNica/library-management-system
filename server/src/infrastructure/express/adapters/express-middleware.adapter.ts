@@ -15,6 +15,7 @@ export const expressMiddlewareAdapter = (middleware: Middleware) => {
       })
         .then(() => next())
         .catch(err => {
+          console.log('ERROR ENCONTRADO: ', err)
           const r = err.message.split(',')
           const type: HttpResponse = r[0]
           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

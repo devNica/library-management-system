@@ -5,8 +5,10 @@ import { UserAccountControllerFactory } from '@factories/controllers/auth/userac
 import { expressMiddlewareAdapter } from '../adapters/express-middleware.adapter'
 import { RequestValidationMiddlewareFactory } from '@factories/middlewares/req-validation-middleware.factory'
 import { signupAdminSchema, signinAdminSchema } from '@interface/validators/auth.schema'
+import { isAdminMiddlewareFactory } from '@factories/middlewares/is-admin-middleware.factory'
 
-const { signupAdminController, signinAdminControlller } = UserAccountControllerFactory()
+const { signupAdminController, signinAdminControlller, getUserAccountsController } = UserAccountControllerFactory()
+const { isAdminMiddleware } = isAdminMiddlewareFactory()
 
 const authRouter = Router()
 
@@ -17,5 +19,9 @@ authRouter.post('/signup/admin',
 authRouter.post('/signin/admin',
   expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signinAdminSchema)),
   expressRouterAdapter(signinAdminControlller))
+
+authRouter.get('/users',
+  expressMiddlewareAdapter(isAdminMiddleware),
+  expressRouterAdapter(getUserAccountsController))
 
 export default authRouter

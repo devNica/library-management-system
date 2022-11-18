@@ -1,5 +1,5 @@
-import { FindByPkUserAccountDTO, UserAccountFound } from '@core/domain/models/useraccount'
+import { FindByPkUserAccountDTO, FoundUserAccountModel } from '@core/domain/models/useraccount'
 
 export interface FindByPkUserAccountByParameters {
-  findByPkUserAccount: (data: FindByPkUserAccountDTO) => Promise<UserAccountFound | null>
+  findByPkUserAccount: (data: FindByPkUserAccountDTO) => Promise<FoundUserAccountModel | null>
 }
